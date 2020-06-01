@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-field label="Version" value="Beta0.1" readonly />
-    <van-field label="Author" value="Mervin" readonly />
+    <van-field label="Author" value="Mervin & ayi" readonly />
     <van-field label="Storage" :value="limit" readonly />
     <van-divider dashed>分割</van-divider>
 

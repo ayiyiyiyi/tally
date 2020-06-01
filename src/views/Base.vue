@@ -16,7 +16,6 @@
           <!-- <pie-chart :pieChartData="chartData" /> -->
           <bar-chart :barChartData.sync="todayChartData" :day="titleDate" />
           <!-- <pie-chart :chartData.sync="todayChartData" /> -->
-          <bar-chart :barChartData.sync="yesterChartData" :day="yestertitleDate" />
           <line-chart :lineChartData.sync="yesterWeekChartData" :day="titleDate"/>
         </van-col>
       </van-row>
@@ -167,7 +166,8 @@ export default {
     },
     cancelPickTime() {
       this.show = false;
-      this.titleDate = formatDate(new Date())
+      const date = formatDate(new Date());
+      this.$store.commit("changeDate", date);
     },
     showPopup() {
       this.show = true;

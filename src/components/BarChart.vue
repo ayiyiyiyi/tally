@@ -48,23 +48,35 @@ export default {
             // textVerticalAlign: "middle",
             subtext: `${_total}元`
           },
-          color: ['#07c160'],
+          color: ['#E5C1CD','#F3D8FC','#AAC9CE'],
           xAxis: {
             type: "category",
-            data: Object.keys(obj)
+            data: Object.keys(obj),
+            nameTextStyle: {
+              color: '#AAC9CE'
+            },
+            axisTick: false
           },
           yAxis: {
-            type: "value"
+            type: "value",
+            "nameTextStyle": {
+              color: '#AAC9CE'
+            },
+            axisTick: false,
+            "splitLine": {
+              "show": false
+            }
           },
           series: [
             {
               title: { text: "今日消费" },
               label: {
                 show: true,
-                position: "top"
+                position: "top",
               },
+              barMaxWidth: 10,
               data: Object.values(obj),
-              type: "bar"
+              type: "bar",
             }
           ]
         };

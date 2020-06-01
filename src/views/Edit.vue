@@ -12,16 +12,16 @@
     </div>
     <div class="fix-middle" :style="styleObj">
       <van-form validate-first>
-        <div v-for="(item,index) in list" :key="index">
           <edit-module
-            :info="list[list.length-1-index]"
+            :info="editValue"
             :list="list"
             :columnsMap="columnsMap"
-            :colIndex="list.length-1-index"
+            :colIndex="0"
           />
-        </div>
       </van-form>
+      <van-cell :title="item.txt" :value="item.cost" :label="item.message" value-class="van-cell-value" v-for="(item,index) in list" :key="index"/>
     </div>
+      
     <van-popup v-model="show" position="bottom" :style="{ height: '30%' }">
       <div class="timepick">
         <van-datetime-picker
@@ -51,7 +51,8 @@ import {
   TabbarItem,
   Picker,
   Field,
-  Form
+  Form,
+  Cell
 } from "vant";
 import EditModule from "../components/EditModule.vue";
 import obj from "../tools.js";
@@ -66,6 +67,11 @@ export default {
       value1: 0,
       tips: "",
       list: [],
+      editValue: {
+        txt: "",
+        cost: 0,
+        message: ""
+      },
       typeVal: "",
       totalData: [],
       show: false,
@@ -162,13 +168,11 @@ export default {
       return options;
     },
     onClickLeft() {
-      Toast("保存成功");
-      this.list.push({
-        txt: "",
-        cost: 0,
-        message: ""
-      });
-      this.saveData()
+      if (this.editValue.cost) {
+        Toast("保存成功");
+        this.list.push(this.editValue)
+        this.saveData()
+      }
     },
     onClickRight() {
       this.show = true;
@@ -226,3 +230,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.van-cell-value span{
+  font-size: 18px;
+  color: #000;
+}
+</style>

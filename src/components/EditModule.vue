@@ -9,7 +9,7 @@
         clickable
         name="picker"
         :value="info.txt"
-        label="选择器"
+        label="分类"
         right-icon="bag-o"
         @blur="onBlur"
         placeholder="请选择类别"
